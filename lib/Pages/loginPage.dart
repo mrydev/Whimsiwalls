@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:whimsiwalls/Utils/colors.dart';
 
 import 'home.dart';
@@ -14,10 +15,10 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.cornsilk,
+      backgroundColor: MyColors.lavander,
       appBar: AppBar(
-        backgroundColor: MyColors.cornsilk,
-        title: const Text('Giriş Ekranı'),
+        backgroundColor: MyColors.lavander,
+        title: Text(style: GoogleFonts.inter(), 'Giriş Ekranı'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -25,11 +26,13 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
-              decoration: const InputDecoration(labelText: 'Kullanıcı Adı'),
+              decoration: InputDecoration(
+                  labelText: 'Kullanıcı Adı', labelStyle: GoogleFonts.inter()),
             ),
             const SizedBox(height: 20.0),
             TextFormField(
-              decoration: const InputDecoration(labelText: 'Parola'),
+              decoration: InputDecoration(
+                  labelText: 'Parola', labelStyle: GoogleFonts.inter()),
               obscureText: true,
             ),
             const SizedBox(height: 20.0),
@@ -40,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (_) => const MyHomePage()));
               },
-              child: const Text('Giriş'),
+              child: Text(style: GoogleFonts.inter(), 'Giriş'),
             ),
           ],
         ),

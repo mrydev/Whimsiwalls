@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:whimsiwalls/Pages/home.dart';
-import 'package:whimsiwalls/Pages/splash.dart';
 
 import 'Services/fetchData.dart';
 
@@ -41,7 +40,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      home: const MyHomePage(),
       routes: {
         "/home": (context) => const MyHomePage(),
       },

@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:whimsiwalls/Pages/loginPage.dart';
+import 'package:whimsiwalls/Pages/home.dart';
 import 'package:whimsiwalls/Utils/colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // Navigator ile yeni bir sayfaya geçiş yapabilirsiniz
       // Örneğin, ana ekranınızın olduğu bir sayfaya geçmek için:
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const LoginPage()),
+        MaterialPageRoute(builder: (_) => const MyHomePage()),
       );
     });
   }
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // Splash ekranın arkaplan rengini veya görüntüsünü ayarlayabilirsiniz
-      backgroundColor: MyColors.cornsilk,
+      backgroundColor: MyColors.lavander,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

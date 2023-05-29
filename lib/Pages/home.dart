@@ -1,5 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import 'package:shimmer/shimmer.dart';
 import 'package:whimsiwalls/Services/fetchData.dart';
 import 'package:whimsiwalls/Utils/colors.dart';
 
@@ -34,11 +38,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyColors.cornsilk,
+      backgroundColor: MyColors.lavander,
       appBar: AppBar(
-        backgroundColor: MyColors.cornsilk,
+        backgroundColor: MyColors.lavander,
         centerTitle: true,
-        title: const Text('WhimsiWalls'),
+        title: Text('WhimsiWalls', style: GoogleFonts.inter()),
       ),
       body: Center(
         child: Column(
@@ -55,21 +59,32 @@ class _MyHomePageState extends State<MyHomePage> {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => FullScreenImagePage(
-                                          imageUrl: documents![index]['url'])));
-                            },
-                            child: Container(
-                                height: 960,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: DecorationImage(
-                                        image: NetworkImage(url!),
-                                        fit: BoxFit.cover))),
-                          ),
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            FullScreenImagePage(
+                                                imageUrl: documents![index]
+                                                    ['url'])));
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(16),
+                                child: CachedNetworkImage(
+                                    imageUrl: url!,
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) => Center(
+                                          child: Shimmer.fromColors(
+                                            baseColor: Colors.grey.shade300,
+                                            highlightColor: Colors.white,
+                                            child: Container(
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                        ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error)),
+                              )),
                         );
                       })),
           ],
