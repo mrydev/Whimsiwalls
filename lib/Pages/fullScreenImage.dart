@@ -51,13 +51,11 @@ class _FullScreenImagePageState extends State<FullScreenImagePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          height: MediaQuery.of(context).size.height,
+        child: Center(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
             child: CachedNetworkImage(
               imageUrl: widget.imageUrl,
-              fit: BoxFit.cover,
               placeholder: (context, url) => const Center(
                 child: CircularProgressIndicator(),
               ),

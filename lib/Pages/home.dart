@@ -38,9 +38,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       backgroundColor: MyColors.lavander,
       appBar: AppBar(
-        backgroundColor: MyColors.lavander,
+        backgroundColor: MyColors.lavander.withOpacity(0.94),
+        elevation: 0,
         centerTitle: true,
         title: Text('WhimsiWalls', style: GoogleFonts.inter()),
       ),
