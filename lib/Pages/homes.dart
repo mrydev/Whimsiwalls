@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icons_plus/icons_plus.dart';
+import 'package:whimsiwalls/Catagories/stock.dart';
 import 'package:whimsiwalls/Pages/home.dart';
 import 'package:whimsiwalls/Pages/homep.dart';
-import 'package:whimsiwalls/Pages/stockWallpapers.dart';
 
 import '../Utils/colors.dart';
 
@@ -24,26 +25,28 @@ class _MyHomesPageState extends State<MyHomesPage> {
             backgroundColor: MyColors.lavander.withOpacity(0.94),
             elevation: 0,
             centerTitle: true,
-            title: Text('WhimsiWalls', style: GoogleFonts.inter()),
+            title: Text('WHIMSIWALLS',
+                style: GoogleFonts.raleway(
+                    letterSpacing: 5,
+                    color: Colors.black.withOpacity(0.8),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 32)),
           ),
           body: const Column(children: [
             TabBar(tabs: [
               Tab(
-                text: 'Home',
+                icon: Icon(Iconsax.home),
               ),
               Tab(
-                text: 'Catagories',
+                icon: Icon(Iconsax.category),
               ),
               Tab(
-                text: 'Profile',
+                icon: Icon(Iconsax.profile_2user),
               ),
             ]),
             Expanded(
-                child: TabBarView(children: [
-              MyHomePage(),
-              CatagoryList(),
-              StockWallpapers()
-            ]))
+                child: TabBarView(
+                    children: [MyHomePage(), CatagoryList(), Stock()]))
           ]),
         ));
   }
