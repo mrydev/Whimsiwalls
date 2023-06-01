@@ -4,8 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:whimsiwalls/Catagories/stock.dart';
-import 'package:whimsiwalls/Pages/home.dart';
-import 'package:whimsiwalls/Pages/homep.dart';
+import 'package:whimsiwalls/Catagories/ai_generated.dart';
+import 'package:whimsiwalls/Pages/catagories.dart';
 import 'package:whimsiwalls/Pages/homes.dart';
 
 import 'Services/fetchData.dart';
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       home: const MyHomesPage(),
       routes: {
         "/catagories": (context) => const CatagoryList(),
-        "/home": (context) => const MyHomePage(),
+        "/home": (context) => const AiGenerated(),
         "/stockwallpapers": (context) => const Stock(),
       },
     );

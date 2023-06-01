@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:whimsiwalls/Catagories/stock.dart';
-import 'package:whimsiwalls/Pages/home.dart';
-import 'package:whimsiwalls/Pages/homep.dart';
+import 'package:whimsiwalls/Catagories/ai_generated.dart';
+import 'package:whimsiwalls/Pages/catagories.dart';
 
 import '../Utils/colors.dart';
 
@@ -46,7 +46,7 @@ class _MyHomesPageState extends State<MyHomesPage> {
             ]),
             Expanded(
                 child: TabBarView(
-                    children: [MyHomePage(), CatagoryList(), Stock()]))
+                    children: [AiGenerated(), CatagoryList(), Stock()]))
           ]),
         ));
   }

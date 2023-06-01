@@ -7,7 +7,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:whimsiwalls/Services/fetchData.dart';
 import 'package:whimsiwalls/Utils/colors.dart';
 
-import '../Pages/fullScreenImage.dart';
+import '../Services/fullScreenImage.dart';
 
 class Stock extends StatefulWidget {
   const Stock({super.key});

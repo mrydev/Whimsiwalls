@@ -6,16 +6,16 @@ import 'package:shimmer/shimmer.dart';
 import 'package:whimsiwalls/Services/fetchData.dart';
 import 'package:whimsiwalls/Utils/colors.dart';
 
-import 'fullScreenImage.dart';
+import '../Services/fullScreenImage.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class AiGenerated extends StatefulWidget {
+  const AiGenerated({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<AiGenerated> createState() => _AiGeneratedState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _AiGeneratedState extends State<AiGenerated> {
   List<DocumentSnapshot>? documents;
   List<DocumentSnapshot>? stockWallpapers;
 
