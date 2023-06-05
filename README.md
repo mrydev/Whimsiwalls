@@ -7,7 +7,9 @@
 
 WhimsiWalls, mobil cihazlar için yüksek kalitede duvar kağıtlarını sunan bir Flutter uygulamasıdır. Uygulama, kullanıcıların telefonlarına farklı kategorilerde güzel duvar kağıtları indirmelerine olanak sağlar. Ayrıca, kullanıcıların favori duvar kağıtlarını profil sayfasında saklamalarına ve paylaşmalarına olanak tanır.
 
-![WhimsiWalls Screenshot](screenshots/screenshot.png)
+
+<img src="screenshots/screenshot3.png" alt="Image" width="540" height="960">
+
 
 ## Özellikler
 
@@ -19,9 +21,13 @@ WhimsiWalls, mobil cihazlar için yüksek kalitede duvar kağıtlarını sunan b
 
 ## Ekran Görüntüleri
 
-![Ekran Görüntüsü 1](screenshots/screenshot1.png)
-![Ekran Görüntüsü 2](screenshots/screenshot2.png)
-![Ekran Görüntüsü 3](screenshots/screenshot3.png)
+<img src="screenshots/screenshot1.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot2.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot3.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot4.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot5.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot6.png" alt="Image" width="540" height="960">
+
 
 ## Kurulum
 
@@ -85,7 +91,7 @@ Bu proje MIT Lisansı altında lisanslanmıştır. Daha fazla bilgi için [LICEN
 
 WhimsiWalls is a Flutter application that provides high-quality wallpapers for mobile devices. The app allows users to download beautiful wallpapers in various categories. Additionally, users can save and share their favorite wallpapers on their profile page.
 
-![WhimsiWalls Screenshot](screenshots/screenshot.png)
+<img src="screenshots/screenshot3.png" alt="Image" width="540" height="960">
 
 ## Features
 
@@ -97,9 +103,12 @@ WhimsiWalls is a Flutter application that provides high-quality wallpapers for m
 
 ## Screenshots
 
-![Screenshot 1](screenshots/screenshot1.png)
-![Screenshot 2](screenshots/screenshot2.png)
-![Screenshot 3](screenshots/screenshot3.png)
+<img src="screenshots/screenshot1.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot2.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot3.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot4.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot5.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot6.png" alt="Image" width="540" height="960">
 
 ## Installation
 
