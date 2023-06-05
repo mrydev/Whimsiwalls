@@ -3,7 +3,7 @@
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**[Türkçe için buraya tıklayın](#whimsiwalls)** / **[Click here for English](#whimsiwalls)**
+**[Türkçe için buraya tıklayın](#whimsiwalls)** / **[Click here for English](#english)**
 
 WhimsiWalls, mobil cihazlar için yüksek kalitede duvar kağıtlarını sunan bir Flutter uygulamasıdır. Uygulama, kullanıcıların telefonlarına farklı kategorilerde güzel duvar kağıtları indirmelerine olanak sağlar. Ayrıca, kullanıcıların favori duvar kağıtlarını profil sayfasında saklamalarına ve paylaşmalarına olanak tanır.
 
@@ -77,11 +77,11 @@ Bu proje MIT Lisansı altında lisanslanmıştır. Daha fazla bilgi için [LICEN
 
 ---
 
-# WhimsiWalls
+# English
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**[Türkçe için buraya tıklayın](#whimsiwalls)** / **[Click here for English](#whimsiwalls)**
+**[Türkçe için buraya tıklayın](#whimsiwalls)** / **[Click here for English](#english)**
 
 WhimsiWalls is a Flutter application that provides high-quality wallpapers for mobile devices. The app allows users to download beautiful wallpapers in various categories. Additionally, users can save and share their favorite wallpapers on their profile page.
 
