@@ -71,4 +71,3 @@ Bu proje MIT Lisansı altında lisanslanmıştır. Daha fazla bilgi için [LICEN
 ---
 
 © 2023 WhimsiWalls. Tüm hakları saklıdır.
-```
