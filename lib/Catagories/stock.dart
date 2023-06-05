@@ -17,7 +17,7 @@ class Stock extends StatefulWidget {
 }
 
 class _StockState extends State<Stock> {
-  List<DocumentSnapshot>? documents;
+
   List<DocumentSnapshot>? stockWallpapers;
 
   void fetchData() async {
@@ -27,10 +27,7 @@ class _StockState extends State<Stock> {
         stockWallpapers = aiData;
       });
 
-      List<DocumentSnapshot> fetchedDocuments = await fetchDataFromFirestore();
-      setState(() {
-        documents = fetchedDocuments;
-      });
+      
     } catch (error) {
       print('Hata: $error');
     }

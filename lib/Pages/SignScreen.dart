@@ -6,6 +6,7 @@ import 'package:whimsiwalls/Pages/register.dart';
 import 'package:whimsiwalls/Utils/colors.dart';
 import 'package:whimsiwalls/Utils/mybutton.dart';
 import 'package:whimsiwalls/Utils/mytextform.dart';
+import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 class SignScreen extends StatefulWidget {
   const SignScreen({Key? key}) : super(key: key);
@@ -15,17 +16,47 @@ class SignScreen extends StatefulWidget {
 }
 
 class _SignScreenState extends State<SignScreen> {
+  final _auth = auth.FirebaseAuth.instance;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  Future<void> signIn(String email, String password) async {
-    try {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration.zero, () {
+      checkCurrentUser();
+    });
+  }
+
+  Future<void> checkCurrentUser() async {
+    auth.User? user = _auth.currentUser;
+    if (user != null) {
+      // Kullanıcı zaten kimlik doğrulandı, ana sayfaya yönlendir
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const MyHomesPage()),
       );
+    }
+  }
 
-      // Giriş başarılı, kullanıcı userCredential.user ile erişilebilir.
+  Future<void> signIn(String email, String password) async {
+    try {
+      final userCredential = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Kullanıcı doğrulama işlemi başarılı olduysa
+      if (userCredential.user != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const MyHomesPage()),
+        );
+      } else {
+        ToastDetails.error();
+        // Kullanıcı doğrulama işlemi başarısız olduysa
+        print("Kullanıcı doğrulama hatası");
+      }
     } catch (e) {
       ToastDetails.error();
       // Giriş sırasında bir hata oluştu.
@@ -37,13 +68,20 @@ class _SignScreenState extends State<SignScreen> {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    // Firebase signIn fonksiyonunu burada çağırabilirsiniz
+    if (email.isEmpty || password.isEmpty) {
+      // Bilgiler boş ise işlem yapma
+      return;
+    }
+
     signIn(email, password);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: MyColors.lavander,
+      ),
       backgroundColor: MyColors.lavander,
       body: SafeArea(
         child: SingleChildScrollView(
@@ -51,16 +89,12 @@ class _SignScreenState extends State<SignScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                //!logo
                 const Icon(
                   (OctIcons.shield_lock_24),
                   size: 100,
                   color: Colors.black,
                 ),
-
                 const SizedBox(height: 50),
-
-                // welcome back, you've been missed!
                 const Text(
                   'Welcome back, you\'ve been missed!',
                   style: TextStyle(
@@ -69,7 +103,6 @@ class _SignScreenState extends State<SignScreen> {
                   ),
                 ),
                 const SizedBox(height: 50),
-                //!textfields
                 MyTextField(
                   controller: _emailController,
                   hintText: "Email",
@@ -82,13 +115,10 @@ class _SignScreenState extends State<SignScreen> {
                   obscureText: true,
                 ),
                 const SizedBox(height: 25),
-                //!sign in button
                 MyButton(
                   onTap: _handleSignIn,
                 ),
                 const SizedBox(height: 50),
-
-                //!or
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
@@ -116,7 +146,6 @@ class _SignScreenState extends State<SignScreen> {
                   ),
                 ),
                 const SizedBox(height: 30),
-                //!google button
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -135,15 +164,14 @@ class _SignScreenState extends State<SignScreen> {
                   ],
                 ),
                 const SizedBox(height: 30),
-
-                //!not a member? sign up
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const RegisterScreen(),
-                        ));
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterScreen(),
+                      ),
+                    );
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

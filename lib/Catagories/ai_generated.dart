@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:shimmer/shimmer.dart';
 import 'package:whimsiwalls/Services/fetchData.dart';
@@ -17,15 +18,9 @@ class AiGenerated extends StatefulWidget {
 
 class _AiGeneratedState extends State<AiGenerated> {
   List<DocumentSnapshot>? documents;
-  List<DocumentSnapshot>? stockWallpapers;
 
   void fetchData() async {
     try {
-      List<DocumentSnapshot> aiData = await fetchAiFromFirestore();
-      setState(() {
-        stockWallpapers = aiData;
-      });
-
       List<DocumentSnapshot> fetchedDocuments = await fetchDataFromFirestore();
       setState(() {
         documents = fetchedDocuments;
@@ -46,6 +41,17 @@ class _AiGeneratedState extends State<AiGenerated> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: MyColors.lavander.withOpacity(0.94),
+          elevation: 0,
+          centerTitle: true,
+          title: Text('WHIMSIWALLS',
+              style: GoogleFonts.raleway(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 32,
+                  letterSpacing: 8,
+                  color: Colors.black.withOpacity(0.8))),
+        ),
         // Başlangıçta seçili olan sekmenin indeksi
 
         extendBodyBehindAppBar: true,

@@ -42,3 +42,75 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Flutter / Dart önbellekleri
+.dart_tool/
+.packages
+.pub/
+build/
+
+# iOS uygulaması için çeşitli önbellekler
+ios/Pods/
+ios/Flutter/App.framework
+ios/Flutter/App.framework.dSYM
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.framework.dSYM
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_assets/
+
+# Android uygulaması için çeşitli önbellekler
+.android/
+build.gradle
+*.iml
+.gradle/
+local.properties
+/.idea/
+/.android/
+/captures/
+
+# macOS / Xcode önbellekleri
+.DS_Store
+*.xcuserstate
+*.xcworkspace/
+*.pbxproj
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.perspectivev3.workspacestate
+DerivedData/
+
+# Android / IntelliJ önbellekleri
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/*.iml
+**/android/.idea/workspace.xml
+**/android/.idea/libraries/
+**/android/.idea/caches/
+**/android/.idea/modules.xml
+**/android/.idea/navEditor.xml
+**/android/.idea/assetWizardSettings.xml
+**/android/.idea/dictionaries/
+**/android/.idea/gradle.xml
+**/android/.idea/codeStyles/
+**/android/.idea/vcs.xml
+**/android/.idea/misc.xml
+**/android/.idea/encodings.xml
+**/android/.idea/jarRepositories.xml
+**/android/.idea/compiler.xml
+**/android/.idea/gradle-runner.xml
+
+# Flutter test ve uygulama yapılandırma dosyaları
+**/test/widget_tests.dart
+**/test/DriverTest.dart
+**/test/test_config.dart
+**/test/widget_test.dart
+/lib/main.dart
+/lib/generated_plugin_registrant.dart
+
+# Firebase yapılandırma dosyaları
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
