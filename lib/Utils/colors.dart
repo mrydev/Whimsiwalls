@@ -14,6 +14,7 @@ class MyColors {
   static const powderYellow = Color(0xFFFFE5B4);
   static const lightYellow = Color(0xFFFFF59D);
   static const lemonYellow = Color(0xFFFFF176);
+  static const vibrantRed = Color(0xFFE53935);
 
   static const koyumavi = Color(0xff0C134F);
   static const mavi = Color(0xff1D267D);

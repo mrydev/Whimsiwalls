@@ -1,4 +1,3 @@
-import 'package:async_wallpaper/async_wallpaper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whimsiwalls/Pages/homes.dart';
@@ -25,6 +24,9 @@ class _SignScreenState extends State<SignScreen> {
     });
   }
 
+  bool _emailError = false;
+  bool _passError = false;
+
   Future<void> checkCurrentUser() async {
     auth.User? user = _auth.currentUser;
     if (user != null) {
@@ -45,19 +47,40 @@ class _SignScreenState extends State<SignScreen> {
 
       // Kullanıcı doğrulama işlemi başarılı olduysa
       if (userCredential.user != null) {
+        // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const MyHomesPage()),
         );
       } else {
-        ToastDetails.error();
-        // Kullanıcı doğrulama işlemi başarısız olduysa
-        print("Kullanıcı doğrulama hatası");
+        setState(() {
+          _emailError = true;
+          _passError = true;
+        });
       }
     } catch (e) {
-      ToastDetails.error();
-      // Giriş sırasında bir hata oluştu.
-      print(e.toString());
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          content: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16.0),
+              color: MyColors.vibrantRed,
+            ),
+            padding:
+                const EdgeInsets.symmetric(vertical: 12.0, horizontal: 5.0),
+            margin: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: const Center(
+              child: Text(
+                'Giriş bilgileri hatalı.',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+          behavior: SnackBarBehavior.floating,
+        ),
+      );
     }
   }
 
@@ -66,9 +89,19 @@ class _SignScreenState extends State<SignScreen> {
     String password = _passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty) {
-      // Bilgiler boş ise işlem yapma
+      // Bilgiler boş ise uyarı ver
+      setState(() {
+        _emailError = email.isEmpty;
+        _passError = password.isEmpty;
+      });
       return;
     }
+
+    // Hata durumu düzeltildiğinde veya metinden çıkıldığında uyarıyı kapat
+    setState(() {
+      _emailError = false;
+      _passError = false;
+    });
 
     signIn(email, password);
   }
@@ -80,6 +113,7 @@ class _SignScreenState extends State<SignScreen> {
         backgroundColor: MyColors.beyaz,
         body: Center(
           child: ListView(
+            physics: const NeverScrollableScrollPhysics(),
             padding: EdgeInsets.zero,
             children: [
               const BubbleBar(),
@@ -94,20 +128,26 @@ class _SignScreenState extends State<SignScreen> {
                       borderRadius: BorderRadius.circular(64),
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.grey.withOpacity(0.4),
                             blurRadius: 10,
                             spreadRadius: 1)
                       ]),
                   child: TextField(
                     controller: _emailController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                         filled: true,
                         fillColor: MyColors.beyaz2,
-                        border: OutlineInputBorder(
+                        border: const OutlineInputBorder(
                             borderRadius:
                                 BorderRadius.all(Radius.circular(64))),
                         labelText: 'Email',
-                        prefixIcon: Icon(Icons.email)),
+                        prefixIcon: const Icon(Icons.email),
+                        errorText: _emailError ? "Email boş olamaz" : null,
+                        errorStyle: GoogleFonts.poppins(
+                          color: MyColors.vibrantRed,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        )),
                   ),
                 ),
               ),
@@ -122,26 +162,32 @@ class _SignScreenState extends State<SignScreen> {
                       borderRadius: BorderRadius.circular(64),
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.black.withOpacity(0.7),
+                            color: Colors.grey.withOpacity(0.4),
                             blurRadius: 10,
                             spreadRadius: 1)
                       ]),
                   child: TextField(
                     controller: _passwordController,
                     obscureText: true,
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: MyColors.beyaz2,
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(64))),
-                      labelText: 'Password',
-                      prefixIcon: Icon(Icons.key),
-                    ),
+                    decoration: InputDecoration(
+                        filled: true,
+                        fillColor: MyColors.beyaz2,
+                        border: const OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(64))),
+                        labelText: 'Password',
+                        errorText: _passError ? "Şifre boş olamaz" : null,
+                        prefixIcon: const Icon(Icons.key),
+                        errorStyle: GoogleFonts.poppins(
+                          color: MyColors.vibrantRed,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w500,
+                        )),
                   ),
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 30,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -158,13 +204,15 @@ class _SignScreenState extends State<SignScreen> {
                 ),
               ),
               const SizedBox(
-                height: 120,
+                height: 100,
               ),
               Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    _handleSignIn();
+                  },
                   child: Container(
                     height: 48,
                     decoration: BoxDecoration(
@@ -191,7 +239,7 @@ class _SignScreenState extends State<SignScreen> {
                 ),
               ),
               const SizedBox(
-                height: 110,
+                height: 30,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
