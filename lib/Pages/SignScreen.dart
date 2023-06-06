@@ -1,8 +1,14 @@
+// ignore_for_file: unused_local_variable, use_build_context_synchronously
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:whimsiwalls/Pages/homes.dart';
+import 'package:whimsiwalls/Pages/register.dart';
 import 'package:whimsiwalls/Utils/colors.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+
+import '../Utils/bubbleBar.dart';
 
 class SignScreen extends StatefulWidget {
   const SignScreen({Key? key}) : super(key: key);
@@ -27,6 +33,20 @@ class _SignScreenState extends State<SignScreen> {
   bool _emailError = false;
   bool _passError = false;
 
+  Future<void> anonLogin() async {
+    try {
+      UserCredential userCredential = await _auth.signInAnonymously();
+      User? user = userCredential.user;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MyHomesPage()),
+      );
+      // Giriş başarılı oldu, kullanıcı bilgilerine erişebilirsiniz.
+    } catch (e) {
+      // Hata oluştu, giriş başarısız oldu.
+    }
+  }
+
   Future<void> checkCurrentUser() async {
     auth.User? user = _auth.currentUser;
     if (user != null) {
@@ -47,7 +67,6 @@ class _SignScreenState extends State<SignScreen> {
 
       // Kullanıcı doğrulama işlemi başarılı olduysa
       if (userCredential.user != null) {
-        // ignore: use_build_context_synchronously
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const MyHomesPage()),
@@ -190,7 +209,7 @@ class _SignScreenState extends State<SignScreen> {
                 height: 30,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 32.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -204,7 +223,7 @@ class _SignScreenState extends State<SignScreen> {
                 ),
               ),
               const SizedBox(
-                height: 100,
+                height: 80,
               ),
               Padding(
                 padding:
@@ -239,7 +258,21 @@ class _SignScreenState extends State<SignScreen> {
                 ),
               ),
               const SizedBox(
-                height: 30,
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Or continue with"),
+                  TextButton(
+                      onPressed: () {
+                        anonLogin();
+                      },
+                      child: const Text("Anonymously"))
+                ],
+              ),
+              const SizedBox(
+                height: 10,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -247,7 +280,10 @@ class _SignScreenState extends State<SignScreen> {
                   const Text("Don't have an account?"),
                   TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, "/signup");
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RegisterScreen()));
                       },
                       child: const Text("Sign up"))
                 ],
@@ -255,30 +291,5 @@ class _SignScreenState extends State<SignScreen> {
             ],
           ),
         ));
-  }
-}
-
-class BubbleBar extends StatelessWidget {
-  const BubbleBar({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.3,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(128),
-        ),
-        gradient: LinearGradient(colors: [
-          MyColors.mor,
-          MyColors.lila,
-        ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-      ),
-      child: Center(
-          child: Image.network(
-              "https://cdn.discordapp.com/attachments/1111721823466430464/1115378473486258216/00003-2024031808.0-removebg.png")),
-    );
   }
 }

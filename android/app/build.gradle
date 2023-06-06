@@ -53,6 +53,9 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
+        archivesBaseName = "WhimsiWalls-$versionName-$versionCode"
+        versionName "1.4"
+        versionCode 1
     }
 
     buildTypes {
