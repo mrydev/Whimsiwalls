@@ -48,6 +48,7 @@ dependencies:
   icons_plus: ^4.0.0
   image_picker: ^0.8.7+5
   flutter_svg: ^2.0.6
+  lottie: ^2.4.0
 
 
 dev_dependencies:
