@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:whimsiwalls/Catagories/favs.dart';
 import 'package:whimsiwalls/Pages/SignScreen.dart';
 import 'package:whimsiwalls/Pages/profileEdit.dart';
+import 'package:whimsiwalls/utils/colors.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -32,6 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.lavander,
       body: Padding(
         padding: const EdgeInsets.all(64.0),
         child: Center(

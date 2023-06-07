@@ -10,7 +10,9 @@ import 'package:whimsiwalls/Utils/colors.dart';
 import '../Services/fullScreenImage.dart';
 
 class AiGenerated extends StatefulWidget {
-  const AiGenerated({super.key});
+  final bool showDefaultTitle;
+
+  const AiGenerated({Key? key, this.showDefaultTitle = true}) : super(key: key);
 
   @override
   State<AiGenerated> createState() => _AiGeneratedState();
@@ -45,61 +47,68 @@ class _AiGeneratedState extends State<AiGenerated> {
           backgroundColor: MyColors.lavander.withOpacity(0.94),
           elevation: 0,
           centerTitle: true,
-          title: Text('WHIMSIWALLS',
-              style: GoogleFonts.raleway(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 32,
-                  letterSpacing: 8,
-                  color: Colors.black.withOpacity(0.8))),
+          title: Text(
+            widget.showDefaultTitle ? 'WhimsiWalls' : 'A.I. Generated',
+            style: GoogleFonts.raleway(
+              fontWeight: FontWeight.bold,
+              fontSize: 32,
+              letterSpacing: 5,
+              color: Colors.black.withOpacity(0.8),
+            ),
+          ),
         ),
-        // Başlangıçta seçili olan sekmenin indeksi
-
         extendBodyBehindAppBar: true,
         backgroundColor: MyColors.lavander,
-
         body: Center(
           child: Column(
             children: [
               if (documents != null)
                 Expanded(
-                    child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2, childAspectRatio: (1 / 2)),
-                        itemCount: documents!.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          String? url = documents![index].get('url');
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              FullScreenImagePage(
-                                                  imageUrl: documents![index]
-                                                      ['url'])));
-                                },
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(16),
-                                  child: CachedNetworkImage(
-                                      imageUrl: url!,
-                                      fit: BoxFit.cover,
-                                      placeholder: (context, url) => Center(
-                                            child: Shimmer.fromColors(
-                                              baseColor: Colors.grey.shade300,
-                                              highlightColor: Colors.white,
-                                              child: Container(
-                                                color: Colors.red,
-                                              ),
-                                            ),
-                                          ),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error)),
-                                )),
-                          );
-                        })),
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: (1 / 2),
+                    ),
+                    itemCount: documents!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String? url = documents![index].get('url');
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => FullScreenImagePage(
+                                  imageUrl: documents![index]['url'],
+                                ),
+                              ),
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: CachedNetworkImage(
+                              imageUrl: url!,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => Center(
+                                child: Shimmer.fromColors(
+                                  baseColor: Colors.grey.shade300,
+                                  highlightColor: Colors.white,
+                                  child: Container(
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
             ],
           ),
         ),

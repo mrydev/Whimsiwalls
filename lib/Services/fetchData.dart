@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 Future<List<DocumentSnapshot>> fetchDataFromFirestore() async {
   // Firestore bağlantısını başlat
@@ -42,12 +43,22 @@ Future<List<DocumentSnapshot>> fetchFavsFromFirestore() async {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   try {
-    // Firestore'dan 'ai' koleksiyonundaki verileri çek
-    QuerySnapshot querySnapshot =
-        await firestore.collection('favs').get();
+    // Firestore'dan favoriler koleksiyonundaki belgeleri kullanıcının UID'sine göre filtreleyerek çek
+    final user = FirebaseAuth.instance.currentUser;
+    final uid = user?.uid;
 
-    // Elde edilen belgeleri döndür
-    return querySnapshot.docs;
+    if (uid != null) {
+      QuerySnapshot querySnapshot = await firestore
+          .collection('favs')
+          .doc(uid)
+          .collection('favorites')
+          .get();
+
+      // Elde edilen belgeleri döndür
+      return querySnapshot.docs;
+    } else {
+      return [];
+    }
   } catch (e) {
     // Hata durumunda ilgili işlemleri yap
     print('Hata: $e');

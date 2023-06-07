@@ -17,7 +17,6 @@ class Stock extends StatefulWidget {
 }
 
 class _StockState extends State<Stock> {
-
   List<DocumentSnapshot>? stockWallpapers;
 
   void fetchData() async {
@@ -26,8 +25,6 @@ class _StockState extends State<Stock> {
       setState(() {
         stockWallpapers = aiData;
       });
-
-      
     } catch (error) {
       print('Hata: $error');
     }
@@ -46,7 +43,7 @@ class _StockState extends State<Stock> {
         backgroundColor: MyColors.lavander.withOpacity(0.94),
         elevation: 0,
         centerTitle: true,
-        title: Text('S T O C K',
+        title: Text('Stock',
             style: GoogleFonts.raleway(
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
