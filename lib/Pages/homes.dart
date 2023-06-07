@@ -19,7 +19,7 @@ class _MyHomesPageState extends State<MyHomesPage> {
   final List<Widget> _pages = [
     const AiGenerated(),
     const CatagoryList(),
-    ProfilePage(),
+    const ProfilePage(),
   ];
 
   @override

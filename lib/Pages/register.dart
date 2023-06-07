@@ -20,11 +20,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _nameErrorText = '';
   String _passwordErrorText = '';
   String _confirmPasswordErrorText = '';
+  String ppUrl = "";
 
-  void addUserInfoToFirestore(String uid, String name, String email) {
+  void addUserInfoToFirestore(
+      String uid, String name, String email, String ppUrl) {
     FirebaseFirestore.instance.collection('users').doc(uid).set({
       'name': name,
       'email': email,
+      'ppUrl': ppUrl,
+
       // Diğer kullanıcı bilgilerini buraya ekleyebilirsiniz
     });
   }
@@ -37,7 +41,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         password: password,
       );
       addUserInfoToFirestore(
-          userCredential.user!.uid, _nameController.text, email);
+        userCredential.user!.uid,
+        _nameController.text,
+        email,
+        ppUrl,
+      );
       // Kayıt başarılı, kullanıcı userCredential.user ile erişilebilir.
 
       Navigator.pushReplacement(
