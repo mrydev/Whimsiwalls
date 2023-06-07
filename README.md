@@ -21,8 +21,8 @@ WhimsiWalls, mobil cihazlar için yüksek kalitede duvar kağıtlarını sunan b
 
 ## Ekran Görüntüleri
 
-<img src="screenshots/screenshot1.png" alt="Image" width="540" height="960">
-<img src="screenshots/screenshot2.png" alt="Image" width="540" height="960">
+<img src="screenshots/screenshot1.png" alt="Image" width="960" height="960">
+<img src="screenshots/screenshot2.png" alt="Image" width="960" height="960">
 <img src="screenshots/screenshot3.png" alt="Image" width="540" height="960">
 <img src="screenshots/screenshot4.png" alt="Image" width="540" height="960">
 <img src="screenshots/screenshot5.png" alt="Image" width="540" height="960">
