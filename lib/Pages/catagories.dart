@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:whimsiwalls/Catagories/reddit.dart';
 import 'package:whimsiwalls/Catagories/stock.dart';
 import 'package:whimsiwalls/Utils/mybutton.dart';
 
@@ -73,10 +74,17 @@ class _CatagoryListState extends State<CatagoryList> {
               SizedBox(
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: MyButton(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Reddit(),
+                          ),
+                        );
+                      },
                       child: Center(
                         child: Text(
-                          'Abstract',
+                          'From Reddit',
                           style: GoogleFonts.inter(
                               fontWeight: FontWeight.w600, fontSize: 24),
                         ),

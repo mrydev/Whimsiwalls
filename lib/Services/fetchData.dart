@@ -37,6 +37,24 @@ Future<List<DocumentSnapshot>> fetchAiFromFirestore() async {
   }
 }
 
+Future<List<DocumentSnapshot>> fetchRedditFromFirestore() async {
+  // Firestore bağlantısını başlat
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  try {
+    // Firestore'dan 'ai' koleksiyonundaki verileri çek
+    QuerySnapshot querySnapshot =
+        await firestore.collection('reddit').get();
+
+    // Elde edilen belgeleri döndür
+    return querySnapshot.docs;
+  } catch (e) {
+    // Hata durumunda ilgili işlemleri yap
+    print('Hata: $e');
+    return [];
+  }
+}
+
 
 Future<List<DocumentSnapshot>> fetchFavsFromFirestore() async {
   // Firestore bağlantısını başlat
