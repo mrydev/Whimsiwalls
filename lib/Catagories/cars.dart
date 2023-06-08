@@ -9,21 +9,21 @@ import 'package:whimsiwalls/Utils/colors.dart';
 
 import '../Services/fullScreenImage.dart';
 
-class Reddit extends StatefulWidget {
-  const Reddit({super.key});
+class Cars extends StatefulWidget {
+  const Cars({super.key});
 
   @override
-  State<Reddit> createState() => _RedditState();
+  State<Cars> createState() => _CarsState();
 }
 
-class _RedditState extends State<Reddit> {
-  List<DocumentSnapshot>? reddit;
+class _CarsState extends State<Cars> {
+  List<DocumentSnapshot>? cars;
 
   void fetchData() async {
     try {
-      List<DocumentSnapshot> aiData = await fetchRedditFromFirestore();
+      List<DocumentSnapshot> aiData = await fetchCarsFromFirestore();
       setState(() {
-        reddit = aiData;
+        cars = aiData;
       });
     } catch (error) {
       print('Hata: $error');
@@ -43,7 +43,7 @@ class _RedditState extends State<Reddit> {
         backgroundColor: MyColors.lavander.withOpacity(0.94),
         elevation: 0,
         centerTitle: true,
-        title: Text('From Reddit',
+        title: Text('Cars',
             style: GoogleFonts.raleway(
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
@@ -55,15 +55,15 @@ class _RedditState extends State<Reddit> {
       body: Center(
         child: Column(
           children: [
-            if (reddit != null)
+            if (cars != null)
               Expanded(
                   child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2, childAspectRatio: (1 / 2)),
-                      itemCount: reddit!.length,
+                      itemCount: cars!.length,
                       itemBuilder: (BuildContext context, int index) {
-                        String? url = reddit![index].get('URL');
+                        String? url = cars![index].get('url');
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
@@ -73,8 +73,8 @@ class _RedditState extends State<Reddit> {
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             FullScreenImagePage(
-                                                imageUrl: reddit![index]
-                                                    ['URL'])));
+                                                imageUrl: cars![index]
+                                                    ['url'])));
                               },
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(16),

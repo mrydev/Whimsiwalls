@@ -9,21 +9,21 @@ import 'package:whimsiwalls/Utils/colors.dart';
 
 import '../Services/fullScreenImage.dart';
 
-class Reddit extends StatefulWidget {
-  const Reddit({super.key});
+class Amoled extends StatefulWidget {
+  const Amoled({super.key});
 
   @override
-  State<Reddit> createState() => _RedditState();
+  State<Amoled> createState() => _AmoledState();
 }
 
-class _RedditState extends State<Reddit> {
-  List<DocumentSnapshot>? reddit;
+class _AmoledState extends State<Amoled> {
+  List<DocumentSnapshot>? amoled;
 
   void fetchData() async {
     try {
-      List<DocumentSnapshot> aiData = await fetchRedditFromFirestore();
+      List<DocumentSnapshot> aiData = await fetchAmoledFromFirestore();
       setState(() {
-        reddit = aiData;
+        amoled = aiData;
       });
     } catch (error) {
       print('Hata: $error');
@@ -43,7 +43,7 @@ class _RedditState extends State<Reddit> {
         backgroundColor: MyColors.lavander.withOpacity(0.94),
         elevation: 0,
         centerTitle: true,
-        title: Text('From Reddit',
+        title: Text('Amoled',
             style: GoogleFonts.raleway(
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
@@ -55,15 +55,15 @@ class _RedditState extends State<Reddit> {
       body: Center(
         child: Column(
           children: [
-            if (reddit != null)
+            if (amoled != null)
               Expanded(
                   child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2, childAspectRatio: (1 / 2)),
-                      itemCount: reddit!.length,
+                      itemCount: amoled!.length,
                       itemBuilder: (BuildContext context, int index) {
-                        String? url = reddit![index].get('URL');
+                        String? url = amoled![index].get('url');
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
@@ -73,8 +73,8 @@ class _RedditState extends State<Reddit> {
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             FullScreenImagePage(
-                                                imageUrl: reddit![index]
-                                                    ['URL'])));
+                                                imageUrl: amoled![index]
+                                                    ['url'])));
                               },
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(16),

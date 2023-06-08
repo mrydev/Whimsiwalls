@@ -4,7 +4,10 @@ import 'package:whimsiwalls/Catagories/reddit.dart';
 import 'package:whimsiwalls/Catagories/stock.dart';
 import 'package:whimsiwalls/Utils/mybutton.dart';
 
+import '../Catagories/abstract.dart';
 import '../Catagories/ai_generated.dart';
+import '../Catagories/amoled.dart';
+import '../Catagories/cars.dart';
 import '../Utils/colors.dart';
 
 class CatagoryList extends StatefulWidget {
@@ -85,6 +88,60 @@ class _CatagoryListState extends State<CatagoryList> {
                       child: Center(
                         child: Text(
                           'From Reddit',
+                          style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w600, fontSize: 24),
+                        ),
+                      ))),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: MyButton(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Cars(),
+                          ),
+                        );
+                      },
+                      child: Center(
+                        child: Text(
+                          'Cars',
+                          style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w600, fontSize: 24),
+                        ),
+                      ))),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: MyButton(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Amoled(),
+                          ),
+                        );
+                      },
+                      child: Center(
+                        child: Text(
+                          'Amoled',
+                          style: GoogleFonts.inter(
+                              fontWeight: FontWeight.w600, fontSize: 24),
+                        ),
+                      ))),
+              SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: MyButton(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Abstract(),
+                          ),
+                        );
+                      },
+                      child: Center(
+                        child: Text(
+                          'Abstract',
                           style: GoogleFonts.inter(
                               fontWeight: FontWeight.w600, fontSize: 24),
                         ),
